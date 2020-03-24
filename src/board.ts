@@ -1,13 +1,15 @@
 import {Cell} from './cell.js';
 
+
 export default class Board{
     public size: number;
     private _self: Cell[][];
+    private onChangeTargets: Function[];
     constructor( d: number = 3) {
         if (d <= 0 || d%1 !== 0 ) {
             throw new RangeError(" Size must be natural number. ");
         }
-
+        this.onChangeTargets = [];
         this.size = d;
         this._self = Array<Array<Cell>>(this.size);
         for ( let i = 0; i< this.size; i++ )

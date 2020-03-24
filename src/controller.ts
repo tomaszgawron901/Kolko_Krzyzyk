@@ -1,36 +1,23 @@
 import {Game} from './game.js';
+import Board from './board.js';
+import {BoardComponent} from './BoardComponent.js';
+
 
 export class Controller {
     Game: Game;
     root: HTMLElement;
-    table: HTMLTableElement;
+    boardComponent: BoardComponent;
     constructor(root: HTMLElement)
     {
         this.Game = new Game();
         this.root = root;
-        this.table = document.createElement("TABLE") as HTMLTableElement;
-        this._initializeElements();
-    }
-
-    _initializeElements() {
-        for (let i = 0; i < this.Game.board.size; i++) {
-            let row = this.table.insertRow(i);
-            for (let j = 0; j < this.Game.board.size; j++) {
-                let cell = row.insertCell(j);
-                let button = document.createElement("BUTTON");
-                button.addEventListener("click", () => {this.Press(i, j)})
-                cell.appendChild(button);
-            }
-        }
-    }
-
-    Press(x: number, y: number)
-    {
-        console.log(x, y);
-        
-    }
-
-    render() {
-        this.root.appendChild(this.table);
+        this.boardComponent = <BoardComponent>document.createElement('board-component');
+        this.boardComponent.setBoard(this.Game.board);
+        this.root.appendChild(this.boardComponent);
+        this.boardComponent.addEventListener('elementClicked', (event) => {
+            let custom = event as CustomEvent<{x: number; y: number;}>;
+            this.Game.SelectCell(custom.detail.x, custom.detail.y);
+            this.boardComponent.Refresh();
+        })
     }
 }

@@ -25,17 +25,28 @@ export class Game {
         for (let i = 0; i < boardVectors.length; i++) {
             if (boardVectors[i] === this.board.size) {
                 this.state = GameState.circleWins;
+                return;
             }
             if (boardVectors[i] === -this.board.size) {
                 this.state = GameState.crossWins;
+                return;
             }
         }
         if (info.nonEmptySum === this.board.size**2) {
             this.state = GameState.draw;
+            return;
         }
         this.state = GameState.onGoing;
     }
 
+
+    private swapTurn() {
+        if (this.turn == Players.cirlce) {
+            this.turn = Players.cross;
+            return;
+        }
+        this.turn = Players.cirlce;
+    }
 
     public SelectCell(x: number, y: number) {
         if ( this.state !== GameState.onGoing ) {
@@ -54,5 +65,6 @@ export class Game {
                 break;
         }
         this.calculateState();
+        this.swapTurn();
     }
 }
