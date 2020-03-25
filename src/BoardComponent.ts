@@ -1,10 +1,11 @@
-import Board from './board.js';
-import { Cell } from './cell.js';
+import Board from './board';
+import { Cell } from './cell';
 
 export class BoardComponent extends HTMLElement {
     board: Board | undefined;
     constructor() {
       super();
+      this.board = new Board(2);
     }
 
     public setBoard(board: Board) {
@@ -45,6 +46,3 @@ export class BoardComponent extends HTMLElement {
         this.appendChild(table);
     }
 }
-
-  // Define the new element
-  customElements.define('board-component', BoardComponent);

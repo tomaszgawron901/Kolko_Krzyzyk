@@ -1,5 +1,5 @@
-import Board from './board.js';
-import { Cell } from './cell.js';
+import Board from './board';
+import { Cell } from './cell';
 
 export enum GameState {
     onGoing, circleWins, crossWins, draw

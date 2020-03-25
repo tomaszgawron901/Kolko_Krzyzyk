@@ -1,6 +1,5 @@
-import {Game} from './game.js';
-import Board from './board.js';
-import {BoardComponent} from './BoardComponent.js';
+import {Game} from './game';
+import {BoardComponent} from './BoardComponent';
 
 
 export class Controller {
