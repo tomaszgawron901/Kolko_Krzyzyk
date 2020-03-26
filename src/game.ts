@@ -2,7 +2,10 @@ import Board from './board';
 import { Cell } from './cell';
 
 export enum GameState {
-    onGoing, circleWins, crossWins, draw
+    onGoing = 'onGoing',
+    circleWins = 'circleWins',
+    crossWins = 'crossWins',
+    draw = 'draw'
 }
 
 export enum Players {
@@ -13,8 +16,8 @@ export class Game {
     board: Board;
     state: GameState;
     turn: Players;
-    constructor(){
-        this.board = new Board(7);
+    constructor(boardSize: number){
+        this.board = new Board(boardSize);
         this.state = GameState.onGoing;
         this.turn = Players.cirlce;
     }

@@ -24,8 +24,8 @@ export class BoardComponent extends HTMLElement {
             for (let j = 0; j < this.board.size; j++) {
                 let cell = row.insertCell(j);
                 let button = <HTMLButtonElement> document.createElement("BUTTON");
+                button.classList.add('boardButton');
                 button.disabled = true;
-                button.style.fontSize = '40px';
                 switch (this.board.Get(i, j)) {
                     case Cell.Circle:
                         button.textContent = 'O';
